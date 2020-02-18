@@ -1,0 +1,10 @@
+.book-list-item {
+    margin:20px 0;
+}
+.book-list-item .title {
+    font-family: 'Playfair Display', serif;
+}
+
+.book-cover img{
+    max-width: 100%;
+}
