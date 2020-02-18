@@ -1,6 +1,5 @@
 export default class BookstoreService {
-    getBooks=()=>{
-        return [
+    data = [
             {
                 id:1,
                 image: 'https://images-na.ssl-images-amazon.com/images/I/41jEbK-jG+L._AC_US218_.jpg' ,
@@ -16,5 +15,15 @@ export default class BookstoreService {
                 price: 47
             },
         ]
+    getBooks(){
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (Math.random() > 0.75) {
+                    reject(new Error('Something went wrong!'));
+                } else {
+                    resolve(this.data);
+                }
+            },500)
+        })
     }
 }

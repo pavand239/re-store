@@ -10,7 +10,7 @@ export const BookListItem = ({book}) => {
                 <h3 className='title'><a href='#'>{book.title}</a></h3>
                 <p>{book.author}</p>
                 <p>Price: {book.price}</p>
-                <button type="button" class="btn btn-primary">Add to cart</button>
+                <button type="button" className="btn btn-primary">Add to cart</button>
             </Col>
         </Row>
     )

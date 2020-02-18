@@ -26,9 +26,9 @@ export const ShoppingCartTable = () => {
                         <td>2</td>
                         <td>62$</td>
                         <td className='action'>
-                            <i class="fas fa-plus-circle text-success"></i>
-                            <i class="fas fa-minus-circle text-warning"></i>
-                            <i class="fas fa-trash-alt text-danger"></i>
+                            <i className="fas fa-plus-circle text-success"></i>
+                            <i className="fas fa-minus-circle text-warning"></i>
+                            <i className="fas fa-trash-alt text-danger"></i>
                         </td>
                     </tr> 
                     <tr>
@@ -38,14 +38,14 @@ export const ShoppingCartTable = () => {
                         <td>1</td>
                         <td>47$</td>
                         <td className='action'>
-                            <i class="fas fa-plus-circle text-success"></i>
-                            <i class="fas fa-minus-circle text-warning"></i>
-                            <i class="fas fa-trash-alt text-danger"></i>
+                            <i className="fas fa-plus-circle text-success"></i>
+                            <i className="fas fa-minus-circle text-warning"></i>
+                            <i className="fas fa-trash-alt text-danger"></i>
                         </td>
                     </tr> 
                 </tbody>
             </Table>
-            <h3>Total: 100$</h3>
+            <h3 className='cart-total'>Total: 100$</h3>
         </>
     )
 }

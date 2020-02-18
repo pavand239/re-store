@@ -1,33 +1,45 @@
 import React, { useEffect} from 'react';
 import { connect } from "react-redux";
-import {Row} from "react-bootstrap";
 
 import {withBookstoreService} from '../hoc';
-import {bookLoaded} from "../../actions";
+import {fetchBooks} from "../../actions";
 import BookListItem from "../book-list-item";
+import Spinner from '../spinner';
+import ErrorIndicator from "../error-indicator";
 
 import './book-list.css'
 
-const BookList = ({books, bookstoreService, bookLoaded}) => {
+const BookList = ({books}) => (
+    <div className='book-list'>
+       { books.map((book) => (
+                <BookListItem key = {book.id} book={book} />
+        ))}
+    </div>
+)
+
+const BookListContainer = ({books, loading, error, fetchBooks}) => {
     useEffect(()=>{
-        bookLoaded(bookstoreService.getBooks());
+        fetchBooks();
     },[])
-    let bookList = books.map((book) => (
-        <div key = {book.id}>
-            <BookListItem book={book} />
-        </div>
-    ))
-    return (
-        <ul>
-            {bookList}
-        </ul>
-    )
+    if (loading) {
+        return (
+            <div className='d-flex w-100'>
+                <Spinner />
+            </div>
+        )
+    }
+    if (error ) {
+        return <ErrorIndicator />
+    }
+    return <BookList books={books} />
 }
 
 const mapStateToProps=(state)=>({
-    books:state.books
+    books:state.books,
+    loading:state.loading,
+    error:state.error
 })
 
 export default withBookstoreService(
-                    connect(mapStateToProps,{bookLoaded})
-                (BookList))
+                    connect(mapStateToProps,fetchBooks)
+                (BookListContainer))

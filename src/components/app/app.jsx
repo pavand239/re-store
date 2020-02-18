@@ -14,7 +14,7 @@ export const App = () => {
                     <Route exact path='/'>
                         <HomePage />
                     </Route>
-                    <Route path='/card'>
+                    <Route path='/cart'>
                         <CardPage />
                     </Route>
                 </Switch>
