@@ -2,16 +2,20 @@ import React from 'react';
 import {Table,Button, ButtonGroup} from "react-bootstrap";
 import {connect} from "react-redux";
 
+import {bookAddedToCart, bookDecAtCart, bookRemoveFromCart} from "../../actions";
+
 import "./shopping-cart-table.css"
 
-const ShoppingCartTable = ({items, orderTotal, onInc, onDec, onDel}) => {
-    let itemsTable= items.map((item, idx)=>{
+const ShoppingCartTable = ({cartItems, orderTotal, onInc, onDec, onDel}) => {
+    if (cartItems.length===0){
+        return <h3>You haven’t ordered anything yet</h3>
+    }
+    let itemsTable= cartItems.map((item, idx)=>{
         let {id, title, author, count, total} = item;
         return (
         <tr key={id}>
             <td>{idx+1}</td>
-            <td>{title}</td>
-            <td>{author}</td>
+            <td>{title} <small>{author}</small></td>
             <td>{count}</td>
             <td>{total}</td>
             <td className='action'>
@@ -42,8 +46,7 @@ const ShoppingCartTable = ({items, orderTotal, onInc, onDec, onDel}) => {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Author</th>
+                        <th>Item</th>
                         <th>Count</th>
                         <th>Total</th>
                         <th>Action</th>
@@ -59,14 +62,14 @@ const ShoppingCartTable = ({items, orderTotal, onInc, onDec, onDel}) => {
 }
 
 const mapStateToProps = (state) =>({
-    items:state.items,
+    cartItems:state.cartItems,
     orderTotal:state.orderTotal
 })
 
-const mapDispatchToProps = ()=>({
-    onInc:(id)=>console.log('inc',id),
-    onDec:(id)=>console.log('dec',id),
-    onDel:(id)=>console.log('del',id)
+const mapDispatchToProps = (dispatch)=>({
+    onInc:(id)=>dispatch(bookAddedToCart(id)),
+    onDec:(id)=>dispatch(bookDecAtCart(id)),
+    onDel:(id)=>dispatch(bookRemoveFromCart(id))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ShoppingCartTable);

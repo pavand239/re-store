@@ -1,9 +1,12 @@
 import React from 'react';
 import {Navbar} from 'react-bootstrap';
-import "./shop-header.css";
 import { Link } from 'react-router-dom';
+import {connect} from "react-redux";
 
-export const ShopHeader = ({numItems, total}) => {
+import "./shop-header.css";
+
+
+const ShopHeader = ({numItems, total}) => {
    return (
         <Navbar sticky='top' bg='light'>
             <Link to='/'>
@@ -22,3 +25,10 @@ export const ShopHeader = ({numItems, total}) => {
         </Navbar>
     )
 }
+
+const mapStateToProps=(state)=>({
+    numItems:state.cartItems.length,
+    total:state.orderTotal
+})
+
+export default connect(mapStateToProps)(ShopHeader);

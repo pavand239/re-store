@@ -2,22 +2,25 @@ import React, { useEffect} from 'react';
 import { connect } from "react-redux";
 
 import {withBookstoreService} from '../hoc';
-import {fetchBooks} from "../../actions";
+import {fetchBooks, bookAddedToCart} from "../../actions";
 import BookListItem from "../book-list-item";
 import Spinner from '../spinner';
 import ErrorIndicator from "../error-indicator";
 
 import './book-list.css'
 
-const BookList = ({books}) => (
+const BookList = ({books, onBookAdded}) => (
     <div className='book-list'>
        { books.map((book) => (
-                <BookListItem key = {book.id} book={book} />
+                <BookListItem 
+                    key = {book.id} 
+                    book={book} 
+                    onBookAdded={()=>{onBookAdded(book.id)}}/>
         ))}
     </div>
 )
 
-const BookListContainer = ({books, loading, error, fetchBooks}) => {
+const BookListContainer = ({books, loading, error, fetchBooks, onBookAdded}) => {
     useEffect(()=>{
         fetchBooks();
     },[])
@@ -31,15 +34,18 @@ const BookListContainer = ({books, loading, error, fetchBooks}) => {
     if (error ) {
         return <ErrorIndicator />
     }
-    return <BookList books={books} />
+    return <BookList books={books} onBookAdded={onBookAdded} />
 }
 
 const mapStateToProps=(state)=>({
     books:state.books,
     loading:state.loading,
-    error:state.error
+    error:state.error,
 })
-
+const mapDispatchToProps=(dispatch,{bookstoreService})=>({
+    fetchBooks:fetchBooks(dispatch, bookstoreService),
+    onBookAdded:(id)=> dispatch(bookAddedToCart(id))
+})
 export default withBookstoreService(
-                    connect(mapStateToProps,fetchBooks)
+                    connect(mapStateToProps,mapDispatchToProps)
                 (BookListContainer))
