@@ -1,2 +1,2 @@
-import {ShoppingCartTable} from "./shopping-cart-table";
+import ShoppingCartTable from "./shopping-cart-table";
 export default ShoppingCartTable;
