@@ -37,10 +37,10 @@ const BookListContainer = ({books, loading, error, fetchBooks, onBookAdded}) => 
     return <BookList books={books} onBookAdded={onBookAdded} />
 }
 
-const mapStateToProps=(state)=>({
-    books:state.books,
-    loading:state.loading,
-    error:state.error,
+const mapStateToProps=({bookList:{books,loading,error}})=>({
+    books,
+    loading,
+    error,
 })
 const mapDispatchToProps=(dispatch,{bookstoreService})=>({
     fetchBooks:fetchBooks(dispatch, bookstoreService),

@@ -61,9 +61,9 @@ const ShoppingCartTable = ({cartItems, orderTotal, onInc, onDec, onDel}) => {
     )
 }
 
-const mapStateToProps = (state) =>({
-    cartItems:state.cartItems,
-    orderTotal:state.orderTotal
+const mapStateToProps = ({shoppingCart:{cartItems, orderTotal}}) =>({
+    cartItems,
+    orderTotal
 })
 
 const mapDispatchToProps = (dispatch)=>({

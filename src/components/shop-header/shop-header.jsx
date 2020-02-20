@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import "./shop-header.css";
 
 
-const ShopHeader = ({numItems, total}) => {
+const ShopHeader = ({numItems, orderTotal}) => {
    return (
         <Navbar sticky='top' bg='light'>
             <Link to='/'>
@@ -18,7 +18,7 @@ const ShopHeader = ({numItems, total}) => {
                 <Navbar.Text className='shopping-cart'>
                     <i className="fas fa-shopping-cart cart-icon"> </i>
                     <Link to="/cart" >
-                        {numItems} items (${total})
+                        {numItems} items (${orderTotal})
                     </Link>
                 </Navbar.Text>
             </Navbar.Collapse>
@@ -26,9 +26,9 @@ const ShopHeader = ({numItems, total}) => {
     )
 }
 
-const mapStateToProps=(state)=>({
-    numItems:state.cartItems.length,
-    total:state.orderTotal
+const mapStateToProps=({shoppingCart:{cartItems, orderTotal}})=>({
+    numItems:cartItems.length,
+    orderTotal
 })
 
 export default connect(mapStateToProps)(ShopHeader);

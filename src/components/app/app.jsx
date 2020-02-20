@@ -8,7 +8,7 @@ import ShopHeader from "../shop-header";
 export const App = () => {
     return (
         <>
-            <ShopHeader numItems={2} total={100} />
+            <ShopHeader/>
             <Container>
                 <Switch>
                     <Route exact path='/'>
