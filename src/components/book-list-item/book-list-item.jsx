@@ -7,7 +7,7 @@ export const BookListItem = ({book, onBookAdded}) => {
                 <a href='#'><img src={book.image}/></a>
             </Col>
             <Col>
-                <h3 className='title'><a href='#'>{book.title}</a></h3>
+                <h3 className='title'>{book.title}</h3>
                 <p>{book.author}</p>
                 <p>Price: {book.price}</p>
                 <Button 
