@@ -1,4 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Re-Store
+
+Simple book store on React+Redux
+
+## Screenshots
+![Screenshot 1](screenshots/screenshot1.png "Screenshot 1")
+
+![Screenshot 2](screenshots/screenshot2.png "Screenshot 2")
+
 
 ## Available Scripts
 
